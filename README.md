@@ -1,2 +1,1 @@
-# maptalks-demo
-maptalks demos
+# maptalks demos
