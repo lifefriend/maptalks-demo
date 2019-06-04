@@ -61,7 +61,7 @@
         'options': this.config()
       };
     };
-    WMTSTileLayer.fromJSON = function fromJSON(layerJSON) {
+    _proto.fromJSON = function fromJSON(layerJSON) {
       if (!layerJSON || layerJSON['type'] !== 'WMTSTileLayer') {
         return null;
       }
