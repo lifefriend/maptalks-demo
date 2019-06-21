@@ -26,17 +26,17 @@
   }
   var options$v2 = {
     uppercase: false,
-	detectRetina:false
+	  detectRetina:false
   };
   var defaultArcParams = {
     // dpi: '90',		
-	// bboxSR: '3857',
-	// imageSR: '3857',
-	// size: '512,512',
-	// layers: '',
-	transparent: true,
-	format: 'png32',
-	f:'image'
+    // bboxSR: '3857',
+    // imageSR: '3857',
+    // size: '512,512',
+    // layers: '',
+    transparent: true,
+    format: 'png32',
+    f:'image'
   };
 
   var ArcGISTileLayer = function (_TileLayer) {
@@ -51,7 +51,7 @@
         }
       }
 	  
-	  var url = options.urlTemplate
+	    var url = options.urlTemplate
       options.urlTemplate = url.replace(/MapServer\/?$/, "MapServer/export").replace(/ImageServer\/?$/, "ImageServer/exportImage");
 	  
       _this.arcParams = arcParams;
@@ -60,30 +60,30 @@
       return _this;
     }
     var _proto = ArcGISTileLayer.prototype;
-	_proto.getTileUrl = function getTileUrl(x, y, z) {
+	  _proto.getTileUrl = function getTileUrl(x, y, z) {
       var res = this.getSpatialReference().getResolution(z),
           tileConfig = this._getTileConfig(),
           tileExtent = tileConfig.getTilePrjExtent(x, y, res);
 
       var max = tileExtent.getMax(),
           min = tileExtent.getMin();
-	  // var bbox = [min.y, min.x, max.y, max.x].join(',');
-	  var bbox = [min.x, min.y, max.x, max.y].join(',');
+	    // var bbox = [min.y, min.x, max.y, max.x].join(',');
+	    var bbox = [min.x, min.y, max.x, max.y].join(',');
 	  
 	  
-	  var pro = this.getSpatialReference().getProjection() || this.getMap().getProjection()  
-	  var srid = pro.code.split(':').pop();
+	    var pro = this.getSpatialReference().getProjection() || this.getMap().getProjection()  
+	    var srid = pro.code.split(':').pop();
       this.arcParams['bboxSR'] = srid;
-	  this.arcParams['imageSR'] = srid;
+	    this.arcParams['imageSR'] = srid;
 	  
-	  var tileSize = this.getTileSize();
-	  this.arcParams['size'] = tileSize.width + ',' + tileSize.height;
+	    var tileSize = this.getTileSize();
+	    this.arcParams['size'] = tileSize.width + ',' + tileSize.height;
 	  
-	  var dpr = this.getMap().getDevicePixelRatio();
+	    var dpr = this.getMap().getDevicePixelRatio();
       var r = options$v2.detectRetina ? dpr : 1;
-	  this.arcParams['dpi'] = 90 * r;
+	    this.arcParams['dpi'] = 90 * r;
 	  
-	  var url = _TileLayer.prototype.getTileUrl.call(this, x, y, z);
+	    var url = _TileLayer.prototype.getTileUrl.call(this, x, y, z);
 
       return url + getParamString(this.arcParams, url, this.options.uppercase) + (this.options.uppercase ? '&BBOX=' : '&bbox=') + bbox;
     };
