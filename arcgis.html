@@ -9,7 +9,7 @@
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.min.js"></script>
-  <script type="text/javascript" src="./arcgis/maptalks.arcgis.js"></script>
+  <script type="text/javascript" src="./maptalks.arcgistilelayer/dist/maptalks.arcgis.min.js"></script>
   <body>
     <div id="map" class="container"></div>
     <script>
@@ -21,7 +21,8 @@
           spatialReference:{
 			projection:'EPSG:4326'
 		  },
-          baseLayer: new maptalks.ArcGISTileLayer('ESRI_Imagery_World_2D', {
+          baseLayer: 
+		  new maptalks.ArcGISTileLayer('ESRI_Imagery_World_2D', {
 			urlTemplate: 'https://services.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServer'		
           })
         });

@@ -1,0 +1,22 @@
+{
+  "name": "maptalks.arcgistilelayer",
+  "version": "0.1.2",
+  "description": "A layer of maptalks to arcgis tile layer.",
+  "author": "lifefriend_007",
+  "main": "dist/maptalks.arcgis.js",
+  "module": "dist/maptalks.arcgis.es.js",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lifefriend/maptalks-demo.git"
+  },
+  "devDependencies": {
+    "maptalks": "^0.39.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
