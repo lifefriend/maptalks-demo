@@ -36,7 +36,7 @@ var wMTSTileLayer = new maptalks.WMTSTileLayer('base', {
 or
 
 ```javascript
-import { WMTSTileLayer } from 'maptalks.arcgistilelayer'
+import { WMTSTileLayer } from 'maptalks.wmtstilelayer'
 var wMTSTileLayer = new WMTSTileLayer('base', {
             tileSystem : [1, -1, -180, 90],
             layer:'vec',
