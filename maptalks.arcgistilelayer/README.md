@@ -22,7 +22,7 @@ yarn add maptalks.arcgistilelayer
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/maptalks.arcgistilelayer/dist/maptalks.arcgis.min.js"></script>
 <script>
 var arcGISTileLayer = new maptalks.ArcGISTileLayer('ESRI_Imagery_World_2D', {
-			urlTemplate: 'https://services.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServe'
+			urlTemplate: 'https://services.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServer'
           }).addTo(map);
 </script>
 ```
@@ -32,7 +32,11 @@ or
 ```javascript
 import { ArcGISTileLayer } from 'maptalks.arcgistilelayer'
 var arcGISTileLayer = new ArcGISTileLayer('ESRI_Imagery_World_2D', {
-			urlTemplate: 'https://services.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServe'
+			urlTemplate: 'https://services.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServer'
           }).addTo(map);
 ```
+
+
+
+[在线demo](https://lifefriend.netlify.app/data/maptalks/arcgis/)
 

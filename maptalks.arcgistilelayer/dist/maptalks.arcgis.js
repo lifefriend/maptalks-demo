@@ -29,11 +29,6 @@
 	  detectRetina:false
   };
   var defaultArcParams = {
-    // dpi: '90',		
-    // bboxSR: '3857',
-    // imageSR: '3857',
-    // size: '512,512',
-    // layers: '',
     transparent: true,
     format: 'png32',
     f:'image'
@@ -50,10 +45,6 @@
           arcParams[p] = options[p];
         }
       }
-	  
-	    var url = options.urlTemplate
-      options.urlTemplate = url.replace(/MapServer\/?$/, "MapServer/export").replace(/ImageServer\/?$/, "ImageServer/exportImage");
-	  
       _this.arcParams = arcParams;
       _this.setOptions(options);
       _this.setZIndex(options.zIndex);
@@ -67,7 +58,6 @@
 
       var max = tileExtent.getMax(),
           min = tileExtent.getMin();
-	    // var bbox = [min.y, min.x, max.y, max.x].join(',');
 	    var bbox = [min.x, min.y, max.x, max.y].join(',');
 	  
 	  
@@ -87,6 +77,10 @@
 
       return url + getParamString(this.arcParams, url, this.options.uppercase) + (this.options.uppercase ? '&BBOX=' : '&bbox=') + bbox;
     };
+    _proto.onConfig = function onConfig() {
+      var url = this.options.urlTemplate; 
+      this.options.urlTemplate = url.replace(/MapServer\/?$/, "MapServer/export").replace(/ImageServer\/?$/, "ImageServer/exportImage");
+    };
     _proto.toJSON = function toJSON() {
       return {
         'type': 'ArcGISTileLayer',
@@ -98,7 +92,6 @@
       if (!layerJSON || layerJSON['type'] !== 'ArcGISTileLayer') {
         return null;
       }
-
       return new ArcGISTileLayer(layerJSON['id'], layerJSON['options']);
     };
     return ArcGISTileLayer;

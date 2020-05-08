@@ -48,3 +48,7 @@ var wMTSTileLayer = new WMTSTileLayer('base', {
           }).addTo(map);
 ```
 
+
+
+[在线demo](https://lifefriend.netlify.app/data/maptalks/wmts/)
+

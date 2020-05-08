@@ -17,11 +17,9 @@
 
   function getParamString(obj, existingUrl, uppercase) {
     var params = [];
-
     for (var i in obj) {
       params.push(encodeURIComponent(uppercase ? i.toUpperCase() : i) + '=' + encodeURIComponent(obj[i]));
     }
-
     return (!existingUrl || existingUrl.indexOf('?') === -1 ? '?' : '&') + params.join('&');
   }
   var options$v2 = {
@@ -47,13 +45,21 @@
           wmtsParams[p] = options[p];
         }
       }
-      var url = options.urlTemplate
-      options.urlTemplate = url + getParamString(wmtsParams, url, this.options.uppercase) + '&tileMatrix={z}&tileRow={y}&tileCol={x}'
+      _this.wmtsParams = wmtsParams;
       _this.setOptions(options);
       _this.setZIndex(options.zIndex);
       return _this;
     }
     var _proto = WMTSTileLayer.prototype;
+    _proto.getTileUrl = function getTileUrl(x, y, z){
+      var url = _TileLayer.prototype.getTileUrl.call(this, x, y, z);
+      return  url + getParamString(this.wmtsParams, url, this.options.uppercase);
+    };
+    _proto.onConfig = function onConfig() {
+      var url = this.options.urlTemplate; 
+      this.options.urlTemplate = url + (!url || url.indexOf('?') === -1 ? '?' : '&') + 'tileMatrix={z}&tileRow={y}&tileCol={x}';
+      this.clear();
+    };
     _proto.toJSON = function toJSON() {
       return {
         'type': 'WMTSTileLayer',
@@ -65,7 +71,6 @@
       if (!layerJSON || layerJSON['type'] !== 'WMTSTileLayer') {
         return null;
       }
-
       return new WMTSTileLayer(layerJSON['id'], layerJSON['options']);
     };
     return WMTSTileLayer;
@@ -75,9 +80,6 @@
   WMTSTileLayer.mergeOptions(options$v2);
 
   exports.WMTSTileLayer = WMTSTileLayer;
-
   Object.defineProperty(exports, '__esModule', { value: true });
-
   typeof console !== 'undefined' && console.log('maptalks.wmts v0.1.0, requires maptalks@^0.39.0.');
-
 })));

@@ -45,10 +45,6 @@ var ArcGISTileLayer = function (_TileLayer) {
         arcParams[p] = options[p];
       }
     }
-  
-  var url = options.urlTemplate
-    options.urlTemplate = url.replace(/MapServer\/?$/, "MapServer/export").replace(/ImageServer\/?$/, "ImageServer/exportImage");
-  
     _this.arcParams = arcParams;
     _this.setOptions(options);
     _this.setZIndex(options.zIndex);
@@ -80,6 +76,11 @@ var ArcGISTileLayer = function (_TileLayer) {
     
     var url = _TileLayer.prototype.getTileUrl.call(this, x, y, z);
     return url + getParamString(this.arcParams, url, this.options.uppercase) + (this.options.uppercase ? '&BBOX=' : '&bbox=') + bbox;
+  };
+  _proto.onConfig = function onConfig() {
+    var url = this.options.urlTemplate; 
+    this.options.urlTemplate = url.replace(/MapServer\/?$/, "MapServer/export").replace(/ImageServer\/?$/, "ImageServer/exportImage");
+    // this.clear();
   };
   _proto.toJSON = function toJSON() {
     return {
