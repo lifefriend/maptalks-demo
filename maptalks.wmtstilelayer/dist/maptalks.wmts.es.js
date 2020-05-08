@@ -53,7 +53,7 @@ var WMTSTileLayer = function (_TileLayer) {
   _proto.onConfig = function onConfig() {
     var url = this.options.urlTemplate; 
     this.options.urlTemplate = url + (!url || url.indexOf('?') === -1 ? '?' : '&') + 'tileMatrix={z}&tileRow={y}&tileCol={x}';
-    this.clear();
+    // this.clear();
   };
   _proto.toJSON = function toJSON() {
     return {
