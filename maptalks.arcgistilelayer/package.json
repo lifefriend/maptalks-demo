@@ -1,6 +1,6 @@
 {
   "name": "maptalks.arcgistilelayer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A layer of maptalks to arcgis tile layer.",
   "author": "lifefriend_007",
   "main": "dist/maptalks.arcgis.js",

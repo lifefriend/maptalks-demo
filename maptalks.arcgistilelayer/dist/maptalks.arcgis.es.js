@@ -48,6 +48,7 @@ var ArcGISTileLayer = function (_TileLayer) {
     _this.arcParams = arcParams;
     _this.setOptions(options);
     _this.setZIndex(options.zIndex);
+    _this.onConfig();
     return _this;
   }
   var _proto = ArcGISTileLayer.prototype;
